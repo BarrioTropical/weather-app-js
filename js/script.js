@@ -19,6 +19,19 @@ search.addEventListener('click', () => {
         .then(response => response.json())
         .then(json => {
 
+            //error 404 city not found
+            if (json.cod === '404') {
+                container.style.height = '400px';
+                weatherBox.style.display = 'none';
+                weatherDetails.style.display = 'none';
+                error404.style.display = 'block';
+                error404.classList.add('fadeIn');
+                return;
+            }
+
+            error404.style.display = 'none';
+            error404.classList.remove('fadeIn');
+
             // const details
             const image = document.querySelector('.weather-box img');
             const temperature = document.querySelector('.weather-box .temperature');
